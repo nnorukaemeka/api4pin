@@ -58,7 +58,7 @@ api.add_resource(Validate, '/validate')
 class AllPin(Resource):
     def get(self):
         database1 = []
-        records = db.session.query(PinGenerator).all()
+        records = PinGenerator.query.all()
         for record in records:
             database1.append(record.__dict__)
         
