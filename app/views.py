@@ -40,10 +40,10 @@ api.add_resource(Generate, '/generate')
 
 
 class Validate(Resource):
-    def post(self):
+    def post(self, s_n, pin):
         #get serial_no and pin from user, and convert to string
         request_data = request.get_json()
-        eserial_no = str(request_data['s/n'])
+        eserial_no = str(request_data['s_n'])
         epin = str(request_data['pin'])
         #check if both serial_no and pin exist in the database
         chkpin = PinGenerator.query.filter_by(pin=epin, serial_no=eserial_no).first()
@@ -55,8 +55,16 @@ class Validate(Resource):
 api.add_resource(Validate, '/validate')
 
 
+class AllPin(Resource):
+    def get(self):
+        get_all = PinGenerator.query.all()
+        return {get_all}, 200
+
+api.add_resource(AllPin, '/database')
+
+
 class Home(Resource):
     def get(self):
         return {
-            'message': '''Welcome, my name is Emeka Nnoruka. The purpose of this project is to build two(2) API. This first endpoint ["/generate"] will return a PIN and a SERIAL_NO, while the second endpoint ["/validate"] will request for SERIAL_NO and PIN and validate if they are VALID [1] or NOT [0].Feel free to consume the APIs.'''}
+            'message': '''Welcome, my name is Emeka Nnoruka. The purpose of this project is to build two(2) API. This first endpoint [/generate] will return a PIN and a SERIAL_NO, while the second endpoint [/validate] will request for SERIAL_NO and PIN and validate them by returning [1] if they are VALID or [0] if NOT VALID. I added additional Api for accessing the whole data in the database. Feel free to consume the APIs.'''}
 api.add_resource(Home, '/')
