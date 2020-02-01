@@ -61,7 +61,8 @@ class AllPin(Resource):
         records = session.query(PinGenerator).all()
         for record in records:
             database1.append(record.__dict__)
-        return {database1}, 200
+        
+        return {'items': database1}, 200
 
 api.add_resource(AllPin, '/database')
 
