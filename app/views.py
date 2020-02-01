@@ -40,11 +40,11 @@ api.add_resource(Generate, '/generate')
 
 
 class Validate(Resource):
-    def post(self, s_n, pin):
+    def post(self):
         #get serial_no and pin from user, and convert to string
         request_data = request.get_json()
-        eserial_no = str(request_data['s_n'])
-        epin = str(request_data['pin'])
+        eserial_no = str(request_data["s_n"])
+        epin = str(request_data["pin"])
         #check if both serial_no and pin exist in the database
         chkpin = PinGenerator.query.filter_by(pin=epin, serial_no=eserial_no).first()
         if chkpin: # if they exist, return 1 connoting valid
