@@ -3,7 +3,6 @@ from app import app, db, api
 from app.models import PinGenerator
 from flask_restful import Resource, Api
 from sqlalchemy import exc
-from functools import wraps
 from sqlalchemy.exc import IntegrityError
 import uuid
 

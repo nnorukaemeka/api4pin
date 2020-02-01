@@ -1,4 +1,4 @@
-#!/home/megzy/Desktop/api4pin-heroku/pinvenv/bin/python3
+#!/home/megzy/Desktop/api4pin-heroku/apivenv/bin/python3
 # EASY-INSTALL-ENTRY-SCRIPT: 'alembic==1.3.3','console_scripts','alembic'
 __requires__ = 'alembic==1.3.3'
 import re
