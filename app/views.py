@@ -72,5 +72,5 @@ api.add_resource(AllPin, '/database')
 class Home(Resource):
     def get(self):
         return {
-            'message': '''Welcome, my name is Emeka Nnoruka. The purpose of this project is to build two(2) API. This first endpoint [/generate] will return a PIN and a SERIAL_NO, while the second endpoint [/validate] will request for SERIAL_NO and PIN and validate them by returning [1] if they are VALID or [0] if NOT VALID. I added additional Api for accessing the whole data in the database. Feel free to consume the APIs.'''}
+            'message': '''Welcome, my name is Emeka Nnoruka. The purpose of this project is to build two(2) API. This first endpoint [/generate] will return a PIN and a SERIAL_NO, while the second endpoint [/validate] will request for SERIAL_NO and PIN and validate them by returning [1] if they are VALID or [0] if NOT VALID. I added additional endpoint [/database] for accessing the whole data in the database. Feel free to consume the APIs.'''}
 api.add_resource(Home, '/')
