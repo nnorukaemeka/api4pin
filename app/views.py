@@ -48,9 +48,9 @@ class Validate(Resource):
         #check if both serial_no and pin exist in the database
         chkpin = PinGenerator.query.filter_by(pin=epin, serial_no=eserial_no).first()
         if chkpin: # if they exist, return 1 connoting valid
-            return {'message':"1"},200
+            return {"message":"1"},200
         else: # if they don't exist, return 0 connoting invalid
-            return {'message':"0"}, 200
+            return {"message":"0"}, 200
 
 api.add_resource(Validate, '/validate')
 
