@@ -45,32 +45,26 @@ api.add_resource(Generate, '/generate')
 #api route for validating pin and s/n
 class ValidatePin(Resource):
     def get(self,pin):
-        #get serial_no and pin from user, and convert to string
-        # request_data = request.get_json()
-        # eserial_no = str(request_data["s/n"])
-        # epin = str(request_data["pin"])
+        #get pin from user, and convert to string
         epin = str(pin)
-        #check if both serial_no and pin exist in the database
+        #check if  pin exist in the database
         chkpin = PinGenerator.query.filter_by(pin=epin).first()
-        if chkpin: # if they exist, return 1 connoting valid
+        if chkpin: # if it exists, return 1 connoting valid
             return {"message":"1"},200
-        else: # if they don't exist, return 0 connoting invalid
+        else: # if it doesn't exist, return 0 connoting invalid
             return {"message":"0"}, 200
 
 api.add_resource(ValidatePin, '/validate/pin/<string:pin>')
 
 class ValidateSn(Resource):
     def get(self,sn):
-        #get serial_no and pin from user, and convert to string
-        # request_data = request.get_json()
-        # eserial_no = str(request_data["s/n"])
-        # epin = str(request_data["pin"])
+        #get serial_no  from user, and convert to string
         eserial = str(sn)
-        #check if both serial_no and pin exist in the database
+        #check if serial_no  exist in the database
         chkpin = PinGenerator.query.filter_by(serial_no=eserial).first()
-        if chkpin: # if they exist, return 1 connoting valid
+        if chkpin: # if it exists, return 1 connoting valid
             return {"message":"1"},200
-        else: # if they don't exist, return 0 connoting invalid
+        else: # if it doesn't exist, return 0 connoting invalid
             return {"message":"0"}, 200
 
 api.add_resource(ValidateSn, '/validate/sn/<string:sn>')
