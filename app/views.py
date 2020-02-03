@@ -43,7 +43,7 @@ api.add_resource(Generate, '/generate')
 
 
 #api route for validating pin and s/n
-class Validate(Resource):
+class ValidatePin(Resource):
     def get(self,pin):
         #get serial_no and pin from user, and convert to string
         # request_data = request.get_json()
@@ -57,10 +57,10 @@ class Validate(Resource):
         else: # if they don't exist, return 0 connoting invalid
             return {"message":"0"}, 200
 
-api.add_resource(Validate, '/validate/pin/<string:pin>')
+api.add_resource(ValidatePin, '/validate/pin/<string:pin>')
 
-class Validate(Resource):
-    def get(self,pin):
+class ValidateSn(Resource):
+    def get(self,sn):
         #get serial_no and pin from user, and convert to string
         # request_data = request.get_json()
         # eserial_no = str(request_data["s/n"])
@@ -73,7 +73,7 @@ class Validate(Resource):
         else: # if they don't exist, return 0 connoting invalid
             return {"message":"0"}, 200
 
-api.add_resource(Validate, '/validate/sn/<string:sn>')
+api.add_resource(ValidateSn, '/validate/sn/<string:sn>')
 
 
 #api route for returning all data in database
