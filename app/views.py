@@ -55,6 +55,18 @@ class Validate(Resource):
             return {"message":"1"},200
         else: # if they don't exist, return 0 connoting invalid
             return {"message":"0"}, 200
+        
+    def get(self):
+        #get serial_no and pin from user, and convert to string
+        request_data = request.get_json()
+        eserial_no = str(request_data["s/n"])
+        epin = str(request_data["pin"])
+        #check if both serial_no and pin exist in the database
+        chkpin = PinGenerator.query.filter_by(pin=epin, serial_no=eserial_no).first()
+        if chkpin: # if they exist, return 1 connoting valid
+            return {"message":"1"},200
+        else: # if they don't exist, return 0 connoting invalid
+            return {"message":"0"}, 200
 
 api.add_resource(Validate, '/validate')
 
