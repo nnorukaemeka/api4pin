@@ -44,19 +44,36 @@ api.add_resource(Generate, '/generate')
 
 #api route for validating pin and s/n
 class Validate(Resource):
-    def post(self):
+    def get(self,pin):
         #get serial_no and pin from user, and convert to string
-        request_data = request.get_json()
-        eserial_no = str(request_data["s/n"])
-        epin = str(request_data["pin"])
+        # request_data = request.get_json()
+        # eserial_no = str(request_data["s/n"])
+        # epin = str(request_data["pin"])
+        epin = str(pin)
         #check if both serial_no and pin exist in the database
-        chkpin = PinGenerator.query.filter_by(pin=epin, serial_no=eserial_no).first()
+        chkpin = PinGenerator.query.filter_by(pin=epin).first()
         if chkpin: # if they exist, return 1 connoting valid
             return {"message":"1"},200
         else: # if they don't exist, return 0 connoting invalid
             return {"message":"0"}, 200
 
-api.add_resource(Validate, '/validate')
+api.add_resource(Validate, '/validate/pin/<string:pin>')
+
+class Validate(Resource):
+    def get(self,pin):
+        #get serial_no and pin from user, and convert to string
+        # request_data = request.get_json()
+        # eserial_no = str(request_data["s/n"])
+        # epin = str(request_data["pin"])
+        eserial = str(sn)
+        #check if both serial_no and pin exist in the database
+        chkpin = PinGenerator.query.filter_by(eserial=eserial).first()
+        if chkpin: # if they exist, return 1 connoting valid
+            return {"message":"1"},200
+        else: # if they don't exist, return 0 connoting invalid
+            return {"message":"0"}, 200
+
+api.add_resource(Validate, '/validate/sn/<string:sn>')
 
 
 #api route for returning all data in database
@@ -78,5 +95,5 @@ api.add_resource(AllPin, '/database')
 class Home(Resource):
     def get(self):
         return {
-            'message': '''Welcome, my name is Emeka Nnoruka. The purpose of this project is to build two(2) API. This first endpoint [/generate] returns a pin and a serial_no(s/n). The second endpoint [/validate] validates pin and s/n when posted by returning [1] as VALID or [0] as NOT VALID. I added additional endpoint [/database] for accessing the whole data in the database. Feel free to consume the APIs.'''}
+            'message': '''Welcome, my name is Emeka Nnoruka. The purpose of this project is to build two(2) API. This first endpoint [/generate] returns a pin and a serial_no(s/n). The second endpoint [/validate/pin/  or /validate/sn/] validates pin or s/n when posted by returning [1] as VALID or [0] as NOT VALID. I added additional endpoint [/database] for accessing the whole data in the database. Feel free to consume the APIs.'''}
 api.add_resource(Home, '/')
