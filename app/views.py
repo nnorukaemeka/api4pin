@@ -23,7 +23,7 @@ class Generate(Resource):
             #generate a random uuid 15 digits
             epin = random_pin(15)
             #generate a random uuid 25 digits
-            eserial_no = random_pin(12)
+            eserial_no = random_pin(25)
             #make an object of the database class
             new_pin = PinGenerator(pin = epin, serial_no = eserial_no)
 
