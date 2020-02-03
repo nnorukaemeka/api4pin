@@ -67,7 +67,7 @@ class ValidateSn(Resource):
         # epin = str(request_data["pin"])
         eserial = str(sn)
         #check if both serial_no and pin exist in the database
-        chkpin = PinGenerator.query.filter_by(eserial=eserial).first()
+        chkpin = PinGenerator.query.filter_by(serial_no=eserial).first()
         if chkpin: # if they exist, return 1 connoting valid
             return {"message":"1"},200
         else: # if they don't exist, return 0 connoting invalid
