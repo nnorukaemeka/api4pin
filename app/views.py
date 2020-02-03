@@ -22,23 +22,19 @@ class Generate(Resource):
         try:
             #generate a random uuid 15 digits
             epin = random_pin(15)
-
+            #generate a random uuid 25 digits
+            eserial_no = random_pin(12)
             #make an object of the database class
-            new_pin = PinGenerator(pin = epin)
+            new_pin = PinGenerator(pin = epin, serial_no = eserial_no)
 
             #compare the generated digits with database, if any exists, generate again
-            if PinGenerator.query.get(epin):
+            if PinGenerator.query.get(epin) or PinGenerator.query.filter_by(serial_no= eserial_no).first():
                 db.session.rollback()
                 return redirect(url_for('generate'))
             # if they don't exist in db, add to database and return the generated digits
             db.session.add(new_pin)
             db.session.commit()
-            #fetch the serial_no for the pin
-            eserial = PinGenerator.query.filter_by(pin=epin).first()
-            if eserial:
-                for record in eserial:
-                    recordObject = {"pin": record.pin, "s/n": record.serial_no}
-                    return {"RESULT": recordObject}, 200
+            return {"pin": epin, "s/n": eserial_no}, 200
         except exc.IntegrityError: #for any other exception, flag error message
             db.session.rollback()
             return {"message": " Oops! try again later"}, 404
