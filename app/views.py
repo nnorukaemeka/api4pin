@@ -20,7 +20,7 @@ def random_pin(length):
 class Generate(Resource):
     def get(self):
         epin = random_pin(15)   #generate a random uuid 15 digits
-        new_pin = PinGenerator(pin = epin, serial_no="") #post to table
+        new_pin = PinGenerator(pin = epin) #post to table
         db.session.add(new_pin) #add to database
         db.session.commit() #commit to database
         record = PinGenerator.query.filter_by(pin=epin).first()
