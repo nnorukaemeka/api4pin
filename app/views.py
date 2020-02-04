@@ -19,7 +19,7 @@ class Generate(Resource):
     def get(self):
         epin = generate.getValue()   #generate a random uuid 15 digits
         eserial = generate.getKey() #generate a 12 digit serial number
-        h[eserial] = epin
+        h[eserial] = epin #set the key-value in the hash table
         return {"pin": epin, "s/n": eserial}, 200
 api.add_resource(Generate, '/generate')  
 
@@ -27,11 +27,9 @@ api.add_resource(Generate, '/generate')
 #api route for validating pin and s/n
 class ValidateSn(Resource):
     def get(self,sn):
-        #check if serial no is in hash table,
-        if (h[sn]) == None:
-        # return 0 if invalid else, return 1  
-            return {"message":"0"}
-        return {"message":"1"} 
+        if (h[sn]) == None: #check if serial no is in hash table, 
+            return {"message":"0"}  # return 0 if invalid 
+        return {"message":"1"} #else, return 1 
 api.add_resource(ValidateSn, '/validate/sn/<string:sn>')
 
 
