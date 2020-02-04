@@ -9,7 +9,7 @@ In order to run the application,
 
 * Recreate virtual enviroment:
 
-	 # pip install -r requirements.txt
+	 ### pip install -r requirements.txt
 
 * Then, set the environment variable below:
 
