@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_uuid import FlaskUUID
 from flask_restful import Resource, Api
 import uuid
+from hashFunc import HashTable, GetKeyValue
 # from flask_pymongo import PyMongo
 
 # Initialize application
