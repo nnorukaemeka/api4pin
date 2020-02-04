@@ -43,7 +43,7 @@ class HashTable:
         return self.get(key)
 
 
-
+#class for generating 12 digit serial number and 15 digit random pin
 class GetKeyValue:
 
     def __init__(self) :
