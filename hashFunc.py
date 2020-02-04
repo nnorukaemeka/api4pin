@@ -1,15 +1,17 @@
 import uuid
 
 class HashTable:
-
+    #initialize variables
     def __init__(self):
         self.size = 255
         self.hashmap = [[] for _ in range(0, self.size)]
     
+    #define hashing Function
     def hashing_func(self, key):
         hashed_key = hash(key) % self.size
         return hashed_key
 
+    #Function that set the key-value into the hash table
     def set(self, key, value):
         hash_key = self.hashing_func(key)
         key_exists = False
@@ -25,6 +27,7 @@ class HashTable:
         else:
             slot.append((key, value))
     
+    #Function that get the value of a given key from the hash table
     def get(self, key):
         hash_key = self.hashing_func(key)
         slot = self.hashmap[hash_key]
@@ -46,6 +49,7 @@ class HashTable:
 #class for generating 12 digit serial number and 15 digit random pin
 class GetKeyValue:
 
+    #initialize the variables
     def __init__(self) :
         self.seq = '000000000000'
 
@@ -54,7 +58,7 @@ class GetKeyValue:
         self.seq = '%012d' % (int(self.seq) + 1)
         return self.seq
     
-    #UUID function that generate the value (pin)
+    #UUID function that generate the random value (pin)
     def getValue(self):
         stringLength = 15
         randomString = str(uuid.uuid4().int) # get a random string in a UUID fromat
