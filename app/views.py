@@ -24,6 +24,7 @@ class Generate(Resource):
         db.session.add(new_pin) #add to database
         db.session.commit() #commit to database
         record = PinGenerator.query.filter_by(pin=epin).first()
+        
         return {"pin": record.pin, "s/n": record.serial_no}, 200
 api.add_resource(Generate, '/generate')  
 
