@@ -27,9 +27,8 @@ api.add_resource(Generate, '/generate')
 #api route for validating pin and s/n
 class ValidateSn(Resource):
     def get(self,sn):
-        #get serial no from user, and convert to string
-        eserial = str(h[sn]) #check if  serial_no in the hash table
-        if eserial == None:
+        #check if serial no is in hash table,
+        if (h[sn]) == None:
         # return 0 if invalid else, return 1  
             return {"message":"0"}
         return {"message":"1"} 
