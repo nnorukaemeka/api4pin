@@ -51,7 +51,7 @@ class GetKeyValue:
 
     #generates the key(serial number)
     def getKey(self) :
-        self.seq = '%010d' % (int(self.seq) + 1)
+        self.seq = '%012d' % (int(self.seq) + 1)
         return self.seq
     
     #UUID function that generate the value (pin)

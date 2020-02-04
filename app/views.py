@@ -32,7 +32,7 @@ class ValidateSn(Resource):
         # return 0 if invalid else, return 1  
             return {"message":"0"}
         return {"message":"1"} 
-api.add_resource(ValidateSn, '/validate/sn/<string:sn>')
+api.add_resource(ValidateSn, '/validate/sn/<id:sn>')
 
 
 
