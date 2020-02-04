@@ -36,8 +36,8 @@ class ValidateSn(Resource):
         #check if  serial_no exist in the database
         checkpin = PinGenerator.query.filter_by(serial_no=eserial).first() 
         # return 1 if valid else, return 0  
-        return {"message":"1"} if checkpin else return {"message":"0"} 
-api.add_resource(ValidatePin, '/validate/sn/<string:sn>')
+        return {"message":"1"} if checkpin else {"message":"0"} 
+api.add_resource(ValidateSn, '/validate/sn/<string:sn>')
 
 
 # class ValidateSn(Resource):
