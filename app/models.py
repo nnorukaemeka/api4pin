@@ -7,7 +7,7 @@ class PinGenerator(db.Model):
     """
     __tablename__ = 'pinGenerator'
 
-    serial_no = db.Column(db.Integer(12), primary_key=True, nullable=False, autoincrement=True, unique =True)
+    serial_no = db.Column(db.Integer(), primary_key=True, nullable=False, autoincrement=True, unique =True)
     pin = db.Column(db.String(15), nullable=False, unique =True)
 
     def __init__(self, pin, serial_no):
