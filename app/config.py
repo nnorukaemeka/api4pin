@@ -13,7 +13,7 @@ class BaseConfig:
     DEBUG = False
     SECRET_KEY = os.getenv('SECRET_KEY', 'my_strong_key')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-
+    MONGO_URI = 'mongodb+srv://nnorukaemeka:oluchukwu.1@cluster0-s5htx.mongodb.net/test?retryWrites=true&w=majority'
 
 
 class DevelopmentConfig(BaseConfig):
